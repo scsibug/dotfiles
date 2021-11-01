@@ -1,0 +1,14 @@
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes '(deeper-blue))
+ '(package-selected-packages
+   '(tidal haskell-mode ledger-mode ledger-cli neuron-mode lsp-treemacs lsp-ivy lsp-ui lsp-mode yasnippet which-key wgrep use-package undo-tree solarized-theme smex smartparens racer org-projectile org-bullets neotree multiple-cursors magit-popup magit hlinum flycheck-rust expand-region exec-path-from-shell dumb-jump dashboard counsel-projectile company cargo avy)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
