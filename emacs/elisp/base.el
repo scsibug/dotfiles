@@ -25,7 +25,7 @@
 (setq default-process-coding-system '(utf-8-unix . utf-8-unix))
 
 ;; Emacs customizations
-(setq confirm-kill-emacs                  'y-or-n-p
+(setq confirm-kill-emacs                  nil
       confirm-nonexistent-file-or-buffer  t
       save-interprogram-paste-before-kill t
       mouse-yank-at-point                 t
@@ -46,7 +46,17 @@
       inhibit-startup-message            t
       fringes-outside-margins            t
       x-select-enable-clipboard          t
-      use-package-always-ensure          t)
+      use-package-always-ensure          t
+      initial-scratch-message nil
+      ;; Never ding at me, ever.
+      ring-bell-function 'ignore
+      ;; Prompts should go in the minibuffer, not in a GUI.
+      use-dialog-box nil
+      ;; Fix undo in commands affecting the mark.
+      mark-even-if-inactive nil
+      ;; Let C-k delete the whole line.
+      kill-whole-line t
+      )
 
 ;; Bookmarks
 (setq
@@ -68,8 +78,13 @@
 (unless (file-exists-p (concat temp-dir "/auto-save-list"))
 		       (make-directory (concat temp-dir "/auto-save-list") :parents))
 
-(fset 'yes-or-no-p 'y-or-n-p)
+;(fset 'yes-or-no-p 'y-or-n-p)
 (global-auto-revert-mode t)
+
+;; Don't display anything on startup
+(defun do-nothing (interactive))
+(defalias 'view-emacs-news 'do-nothing)
+(defalias 'describe-gnu-project 'do-nothing)
 
 ;; Disable toolbar & menubar
 (menu-bar-mode -1)
@@ -77,7 +92,7 @@
   (tool-bar-mode -1))
 (when (  fboundp 'scroll-bar-mode)
   (scroll-bar-mode -1))
-
+(tooltip-mode -1)
 (show-paren-mode 1)
 
 ;; Need to load custom file to avoid being overwritten
@@ -86,6 +101,15 @@
 
 ;; Delete trailing whitespace before save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; Handle very long lines everywhere
+(global-so-long-mode)
+
+;; paren completion
+(electric-pair-mode)
+
+(delete-selection-mode t)
+(column-number-mode)
 
 (provide 'base)
 ;;; base ends here

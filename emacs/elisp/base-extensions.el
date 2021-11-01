@@ -3,7 +3,6 @@
   :bind
   ("C-c SPC" . avy-goto-char))
 
-
 (use-package company
   :config
   (add-hook 'after-init-hook 'global-company-mode))
@@ -147,9 +146,19 @@
    undo-tree-history-directory-alist `(("." . ,(concat temp-dir "/undo/"))))
   (global-undo-tree-mode 1))
 
+;; help identify available commands
 (use-package which-key
   :config
-  (which-key-mode))
+  (which-key-mode)
+  (which-key-setup-side-window-bottom)
+  :custom (which-key-idle-delay 1.2))
+
+(use-package which-key
+  :custom
+  (which-key-setup-side-window-bottom)
+  (which-key-enable-extended-define-key t)
+  :config
+  (which-key-setup-minibuffer))
 
 (use-package windmove
   :bind
@@ -168,6 +177,15 @@
   :config
     (dumb-jump-mode))
 
+(use-package duplicate-thing
+  :init
+  (defun my-duplicate-thing ()
+    "Duplicate thing at point without changing the mark."
+    (interactive)
+    (save-mark-and-excursion (duplicate-thing 1)))
+  :bind (("C-c u" . my-duplicate-thing)
+         ("C-c C-u" . my-duplicate-thing)))
+
 (use-package neuron-mode)
 
 (use-package ledger-mode)
@@ -177,5 +195,14 @@
 (use-package tidal)
 (setq tidal-interpreter "/Users/scsibug/.ghcup/bin/ghci")
 (setq tidal-boot-script-path "~/.cabal/store/ghc-8.10.4/tdl-1.7.4-ee4f92ea/share/BootTidal.hs")
+
+(use-package rainbow-delimiters
+  :hook ((prog-mode . rainbow-delimiters-mode)))
+
+(use-package all-the-icons)
+
+(use-package all-the-icons-dired
+  :after all-the-icons
+  :hook (dired-mode . all-the-icons-dired-mode))
 
 (provide 'base-extensions)
