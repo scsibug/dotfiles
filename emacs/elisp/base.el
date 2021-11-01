@@ -44,6 +44,7 @@
       exec-path                          (append exec-path '("/usr/local/bin/"))
       indent-tabs-mode                   nil
       inhibit-startup-message            t
+      inhibit-splash-screen              t
       fringes-outside-margins            t
       x-select-enable-clipboard          t
       use-package-always-ensure          t
