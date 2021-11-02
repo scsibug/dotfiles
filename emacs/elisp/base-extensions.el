@@ -29,6 +29,7 @@
   :custom (dimmer-fraction 0.3)
   :config (dimmer-mode))
 
+;; Nice Lisp editing
 (use-package parinfer-rust-mode
     :hook emacs-lisp-mode
     :init
