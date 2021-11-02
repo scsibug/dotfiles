@@ -1,4 +1,3 @@
-
 (use-package avy
   :bind
   ("C-c SPC" . avy-goto-char))
@@ -24,6 +23,16 @@
     (exec-path-from-shell-copy-env "GOPATH")
     (exec-path-from-shell-copy-env "PYTHONPATH")
     (exec-path-from-shell-initialize)))
+
+;; Dim other buffers
+(use-package dimmer
+  :custom (dimmer-fraction 0.3)
+  :config (dimmer-mode))
+
+(use-package parinfer-rust-mode
+    :hook emacs-lisp-mode
+    :init
+    (setq parinfer-rust-auto-download t))
 
 (use-package expand-region
   :bind

@@ -107,7 +107,8 @@
 (global-so-long-mode)
 
 ;; paren completion
-(electric-pair-mode)
+;; disabled due to parinfer mode
+;;(electric-pair-mode)
 
 (delete-selection-mode t)
 (column-number-mode)
