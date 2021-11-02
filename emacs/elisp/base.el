@@ -113,5 +113,9 @@
 (delete-selection-mode t)
 (column-number-mode)
 
+;; display line number
+(when (version<= "26.0.50" emacs-version )
+  (global-display-line-numbers-mode))
+
 (provide 'base)
 ;;; base ends here
