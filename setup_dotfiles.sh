@@ -11,3 +11,7 @@ ln -svf "${GIT_ROOT}/emacs/init.el" ~/.emacs.d/init.el
 ln -svf "${GIT_ROOT}/emacs/.custom.el" ~/.emacs.d/.custom.el
 ln -svf "${GIT_ROOT}/emacs/elisp" ~/.emacs.d
 ln -svf "${GIT_ROOT}/emacs/snippets" ~/.emacs.d
+
+### Git
+ln -svf "${GIT_ROOT}/config/git/gitconfig" ~/.gitconfig
+ln -svf "${GIT_ROOT}/config/git/gitignore" ~/.gitignore

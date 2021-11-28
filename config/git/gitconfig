@@ -1,0 +1,13 @@
+[user]
+	name = Greg Heartsfield
+	email = scsibug@imap.cc
+[core]
+	editor = emacsclient
+	excludesFile = ~/.gitignore
+[init]
+	defaultBranch = master
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
