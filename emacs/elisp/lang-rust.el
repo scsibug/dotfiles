@@ -8,11 +8,7 @@
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
 
-;; optionally
 (use-package lsp-ui :commands lsp-ui-mode)
-;; if you are helm user
-;;(use-package helm-lsp :commands helm-lsp-workspace-symbol)
-;; if you are ivy user
 (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
 (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
 
@@ -25,36 +21,33 @@
     :config
     (which-key-mode))
 
-;; rust-mode, racer, cargo
+;; rustic-mode
 
-;; rust-mode
-;; https://github.com/rust-lang/rust-mode
-(use-package rust-mode
-  :bind ( :map rust-mode-map)
-;;         (("C-c C-t" . racer-describe)))
+(use-package rustic
+  :ensure
+  :bind (:map rustic-mode-map
+              ("M-j" . lsp-ui-imenu)
+              ("M-?" . lsp-find-references)
+              ("C-c C-c l" . flycheck-list-errors)
+              ("C-c C-c a" . lsp-execute-code-action)
+              ("C-c C-c r" . lsp-rename)
+              ("C-c C-c q" . lsp-workspace-restart)
+              ("C-c C-c Q" . lsp-workspace-shutdown)
+              ("C-c C-c s" . lsp-rust-analyzer-status))
   :config
-  (progn
-    ;; add flycheck support for rust
-    ;; https://github.com/flycheck/flycheck-rust
-    (use-package flycheck-rust)
+  ;; comment to disable rustfmt on save
+  (setq rustic-format-on-save t)
+  (add-hook 'rustic-mode-hook 'rk/rustic-mode-hook))
 
-    ;; cargo-mode for all the cargo related operations
-    ;; https://github.com/kwrooijen/cargo.el
-    (use-package cargo
-      :hook (rust-mode . cargo-minor-mode)
-      :bind
-      ("C-c C-c C-n" . cargo-process-new))
+(defun rk/rustic-mode-hook ()
+  ;; so that run C-c C-c C-r works without having to confirm, but don't try to
+  ;; save rust buffers that are not file visiting. Once
+  ;; https://github.com/brotzeit/rustic/issues/253 has been resolved this should
+  ;; no longer be necessary.
+  (when buffer-file-name
+    (setq-local buffer-save-without-query t)))
 
-    (add-hook 'rust-mode-hook 'flycheck-mode)
-    (add-hook 'flycheck-mode-hook 'flycheck-rust-setup)
-
-    ;; format rust buffers on save using rustfmt
-    (add-hook 'before-save-hook
-              (lambda ()
-                (when (eq major-mode 'rust-mode)
-                  (rust-format-buffer))))))
-
-(add-hook 'rust-mode-hook
+(add-hook 'rustic-mode-hook
           (lambda () (setq indent-tabs-mode nil)))
 
 (provide 'lang-rust)

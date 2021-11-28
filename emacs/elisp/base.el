@@ -115,6 +115,7 @@
 
 ;; display line number
 (when (version<= "26.0.50" emacs-version )
+;;  (global-hl-line-mode) ;; don't highlight current line
   (global-display-line-numbers-mode))
 
 (provide 'base)
