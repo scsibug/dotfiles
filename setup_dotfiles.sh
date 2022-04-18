@@ -15,3 +15,4 @@ ln -svf "${GIT_ROOT}/emacs/snippets" ~/.emacs.d
 ### Git
 ln -svf "${GIT_ROOT}/config/git/gitconfig" ~/.gitconfig
 ln -svf "${GIT_ROOT}/config/git/gitignore" ~/.gitignore
+ln -svf "${GIT_ROOT}/config/git/gitmessage" ~/.gitmessage
