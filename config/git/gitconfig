@@ -1,6 +1,7 @@
 [user]
 	name = Greg Heartsfield
 	email = scsibug@imap.cc
+	signingkey = B777FE08F8CE28E9149230DDC7F4AA6B95F11E3A
 [core]
 	editor = emacsclient
 	excludesFile = ~/.gitignore
@@ -11,3 +12,5 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
+[commit]
+	template = /Users/scsibug/.gitmessage
