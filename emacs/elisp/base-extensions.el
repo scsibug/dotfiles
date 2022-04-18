@@ -169,9 +169,9 @@
 
 (use-package wgrep)
 
-(use-package yasnippet
-  :config
-  (yas-global-mode 1))
+;(use-package yasnippet
+;  :config
+;  (yas-global-mode 1))
 
 (use-package dumb-jump
   :config
@@ -199,10 +199,10 @@
 (use-package rainbow-delimiters
   :hook ((prog-mode . rainbow-delimiters-mode)))
 
-(use-package all-the-icons)
+;(use-package all-the-icons)
 
-(use-package all-the-icons-dired
-  :after all-the-icons
-  :hook (dired-mode . all-the-icons-dired-mode))
+;(use-package all-the-icons-dired
+;  :after all-the-icons
+;  :hook (dired-mode . all-the-icons-dired-mode))
 
 (provide 'base-extensions)
