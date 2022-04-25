@@ -1,3 +1,7 @@
+(use-package fira-code-mode
+  :custom (fira-code-mode-disabled-ligatures '("[]" "x"))  ; ligatures you don't want
+  :hook prog-mode)                                         ; mode to enable fira-code-mode in
+
 (use-package avy
   :bind
   ("C-c SPC" . avy-goto-char))
@@ -23,11 +27,6 @@
     (exec-path-from-shell-copy-env "GOPATH")
     (exec-path-from-shell-copy-env "PYTHONPATH")
     (exec-path-from-shell-initialize)))
-
-;; Dim other buffers
-(use-package dimmer
-  :custom (dimmer-fraction 0.3)
-  :config (dimmer-mode))
 
 ;; Nice Lisp editing
 (use-package parinfer-rust-mode
