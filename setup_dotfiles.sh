@@ -16,3 +16,12 @@ ln -svf "${GIT_ROOT}/emacs/snippets" ~/.emacs.d
 ln -svf "${GIT_ROOT}/config/git/gitconfig" ~/.gitconfig
 ln -svf "${GIT_ROOT}/config/git/gitignore" ~/.gitignore
 ln -svf "${GIT_ROOT}/config/git/gitmessage" ~/.gitmessage
+
+### Conky
+# Run on startup
+# Config
+# Graphics (Fedora, but could be platform-dependent)
+
+### Gnome
+# Disable indexing
+touch ~/.nomedia
