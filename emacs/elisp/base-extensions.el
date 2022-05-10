@@ -105,6 +105,10 @@
   ("C-c l" . org-store-link)
   ("C-c a" . org-agenda))
 
+(use-package org-roam)
+(setq org-roam-directory (file-truename "~/repos/org-roam"))
+(org-roam-db-autosync-mode)
+
 (use-package org-projectile
   :config
   (org-projectile-per-project)
