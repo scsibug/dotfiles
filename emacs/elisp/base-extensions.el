@@ -108,6 +108,8 @@
 (use-package org-roam
     :ensure t)
 (setq org-roam-directory (file-truename "~/repos/org-roam"))
+(setq org-return-follows-link  t)
+;(setq org-adapt-indentation nil)
 (org-roam-db-autosync-mode)
 
 (use-package org-projectile
