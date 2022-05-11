@@ -18,10 +18,15 @@ ln -svf "${GIT_ROOT}/config/git/gitignore" ~/.gitignore
 ln -svf "${GIT_ROOT}/config/git/gitmessage" ~/.gitmessage
 
 ### Conky
-# Run on startup
+# Run on startup ???
 # Config
+mkdir -p ~/.config/conky
+ln -svf "${GIT_ROOT}/config/conky" ~/.config/conky
 # Graphics (Fedora, but could be platform-dependent)
 
 ### Gnome
 # Disable indexing
 touch ~/.nomedia
+
+## Alert sound;
+# https://notificationsounds.com/message-tones/stealthy-beep-100
