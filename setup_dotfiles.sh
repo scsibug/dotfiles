@@ -20,8 +20,7 @@ ln -svf "${GIT_ROOT}/config/git/gitmessage" ~/.gitmessage
 ### Conky
 # Run on startup ???
 # Config
-mkdir -p ~/.config/conky
-ln -svf "${GIT_ROOT}/config/conky" ~/.config/conky
+ln -svf "${GIT_ROOT}/config/conky" ~/.config/
 # Graphics (Fedora, but could be platform-dependent)
 
 ### Gnome
