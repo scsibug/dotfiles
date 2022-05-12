@@ -1,3 +1,5 @@
+;;(toggle-debug-on-error)
+
 (when (display-graphic-p)
   (use-package fira-code-mode
     :custom (fira-code-mode-disabled-ligatures '("[]" "x"))  ; ligatures you don't want
@@ -102,9 +104,8 @@
   (setq org-directory "~/repos/org-roam"
         org-default-notes-file (concat org-directory "/todo.org")
 	org-agenda-files '("~/repos/org-roam"))
-
   (setq org-todo-keywords
-	'((sequence "TODO", "WAITING" "|" "DONE")))
+	'((sequence "TODO" "WAITING" "|" "DONE")))
   :bind
   ("C-c l" . org-store-link)
   ("C-c a" . org-agenda))
@@ -116,11 +117,11 @@
 ;(setq org-adapt-indentation nil)
 (org-roam-db-autosync-mode)
 
-(use-package org-projectile
-  :config
-  (org-projectile-per-project)
-  (setq org-projectile-per-project-filepath "todo.org"
-	org-agenda-files (append org-agenda-files (org-projectile-todo-files))))
+;(use-package org-projectile
+;  :config
+;  (org-projectile-per-project)
+;  (setq org-projectile-per-project-filepath "todo.org"
+;	org-agenda-files (append org-agenda-files (org-projectile-todo-files))))
 
 (use-package org-bullets
   :config
