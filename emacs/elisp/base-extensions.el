@@ -99,8 +99,12 @@
 
 (use-package org
   :config
-  (setq org-directory "~/org-files"
-        org-default-notes-file (concat org-directory "/todo.org"))
+  (setq org-directory "~/repos/org-roam"
+        org-default-notes-file (concat org-directory "/todo.org")
+	org-agenda-files '("~/repos/org-roam"))
+
+  (setq org-todo-keywords
+	'((sequence "TODO", "WAITING" "|" "DONE")))
   :bind
   ("C-c l" . org-store-link)
   ("C-c a" . org-agenda))
