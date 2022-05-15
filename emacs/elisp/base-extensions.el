@@ -103,12 +103,39 @@
   :config
   (setq org-directory "~/repos/org-roam"
         org-default-notes-file (concat org-directory "/todo.org")
-	org-agenda-files '("~/repos/org-roam"))
+	org-html-doctype "html5"
+	org-agenda-files (directory-files-recursively "~/repos/org-roam/" "\\.org$"))
   (setq org-todo-keywords
 	'((sequence "TODO" "WAITING" "|" "DONE")))
   :bind
   ("C-c l" . org-store-link)
-  ("C-c a" . org-agenda))
+  ("C-c a" . org-agenda)
+  ("C-c n f" . org-roam-node-find)
+  (:map org-mode-map
+        (("C-c n i" . org-roam-node-insert)
+         ("C-c n o" . org-id-get-create)
+         ("C-c n t" . org-roam-tag-add)
+         ("C-c n a" . org-roam-alias-add)
+         ("C-c n l" . org-roam-buffer-toggle))))
+
+
+
+
+(setq org-publish-project-alist
+  '(("roam"
+         :base-directory "~/repos/org-roam/"
+         :base-extension "org"
+         :publishing-directory "~/repos/org-roam/html/"
+         :publishing-function org-html-publish-to-html
+         :exclude "PrivatePage.org" ;; regexp
+         :headline-levels 3
+         :section-numbers nil
+	 :html-validation-link nil
+         :with-toc nil
+         :html-head "<link rel=\"stylesheet\"
+                  href=\"../style.css\" type=\"text/css\"/>"
+         :html-preamble t)
+    ))
 
 (use-package org-roam
     :ensure t)
@@ -116,6 +143,61 @@
 (setq org-return-follows-link  t)
 ;(setq org-adapt-indentation nil)
 (org-roam-db-autosync-mode)
+
+(add-to-list 'display-buffer-alist
+             '("\\*org-roam\\*"
+               (display-buffer-in-side-window)
+               (side . right)
+               (slot . 0)
+               (window-width . 0.33)
+               (window-parameters . ((no-other-window . t)
+                                     (no-delete-other-windows . t)))))
+
+
+(setq org-roam-capture-templates
+      ;; Articles should have a link via ROAM_REF
+      '(("a" "article" plain
+         "%?"
+         :if-new (file+head "articles/%<%Y%m%d%H%M%S>-${slug}.org"
+                            "#+title: ${title}\n#+filetags: :article:\n#+date: %u\n\n- Article Text: %?\n- Author(s):\n- Published:\n\n* Summary\n\n*Notes\n\n* Quotes\n\n*References\n")
+         :immediate-finish t
+         :unnarrowed t)
+	("t" "talk" plain
+         "%?"
+         :if-new (file+head "talks/%<%Y%m%d%H%M%S>-${slug}.org"
+                            "#+title: ${title}\n#+filetags: :talk:\n#+date: %u\n\n- Presentation Video: %?\n- Speaker(s):\n- Length:\n- Published:\n\n* Summary\n\n*Notes\n\n*Quotes\n\n*References\n")
+         :immediate-finish t
+         :unnarrowed t)
+	("b" "book" plain
+         "%?"
+         :if-new (file+head "books/%<%Y%m%d%H%M%S>-${slug}.org"
+			    "#+title: ${title}\n#+filetags: :book:\n#+date: %u\n\n- Book Link: %?\n- Author(s):\n- ISBN:\n- Published:\n\n* Summary\n\n*Notes\n\n*Quotes\n\n*References\n")
+         :immediate-finish t
+         :unnarrowed t)
+	("s" "software" plain
+         "%?"
+         :if-new (file+head "software/%<%Y%m%d%H%M%S>-${slug}.org"
+                            "#+title: ${title}\n#+filetags: :software:\n#+date: %u\n\n- Homepage: %?\n")
+         :immediate-finish t
+         :unnarrowed t)
+	("h" "hardware" plain
+         "%?"
+         :if-new (file+head "hardware/%<%Y%m%d%H%M%S>-${slug}.org"
+                            "#+title: ${title}\n#+filetags: :hardware:\n#+date: %u\n\n- Homepage: %?\n- Manufacturer:\n- Model:\n")
+         :immediate-finish t
+         :unnarrowed t)
+	("c" "concept" plain
+         "%?"
+         :if-new (file+head "concepts/%<%Y%m%d%H%M%S>-${slug}.org"
+                            "#+title: ${title}\n#+filetags: :concept:\n#+date: %u\n\n%?/Concept Summary/\n\n* References\n")
+         :immediate-finish t
+         :unnarrowed t)
+	("n" "note" plain
+         "%?"
+         :if-new (file+head "notes/%<%Y%m%d%H%M%S>-${slug}.org"
+                            "#+title: ${title}\n#+filetags: :note:\n#+date: %u")
+         :immediate-finish t
+         :unnarrowed t)))
 
 ;(use-package org-projectile
 ;  :config
