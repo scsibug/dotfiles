@@ -136,6 +136,9 @@
 ;; add last-modified time
 (add-hook 'before-save-hook 'time-stamp)
 
+(use-package htmlize
+  :ensure t)
+
 ;; Use simpleCSS by default
 (setq org-html-head "<link rel=\"stylesheet\" href=\"https://cdn.simplecss.org/simple.min.css\" />")
 
