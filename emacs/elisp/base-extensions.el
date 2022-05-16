@@ -104,6 +104,7 @@
   (setq org-directory "~/repos/org-roam"
         org-default-notes-file (concat org-directory "/todo.org")
 	org-html-doctype "html5"
+	org-use-tag-inheritance t
 	org-agenda-files (directory-files-recursively "~/repos/org-roam/" "\\.org$"))
   (setq org-todo-keywords
 	'((sequence "TODO" "WAITING" "|" "DONE")))
@@ -120,12 +121,30 @@
 
 
 
+(require 'ox-publish)
+
+(use-package ox-hugo
+  :ensure t   ;Auto-install the package from Melpa
+  :pin melpa  ;`package-archives' should already have ("melpa" . "https://melpa.org/packages/")
+  :after ox)
+
+
+; Don't include default CSS
+(setq org-html-head-include-default-style nil)
+;(setq org-html-head-include-scripts nil)
+
+; add last-modified time
+(add-hook 'before-save-hook 'time-stamp)
 
 (setq org-publish-project-alist
-  '(("roam"
+      '(("roam-notes"
          :base-directory "~/repos/org-roam/"
          :base-extension "org"
-         :publishing-directory "~/repos/org-roam/html/"
+	 :recursive t
+	 :auto-sitemap t
+	 :sitemap-filename "sitemap.org"
+	 :sitemap-title "Sitemap"
+         :publishing-directory "~/org-publish/"
          :publishing-function org-html-publish-to-html
          :exclude "PrivatePage.org" ;; regexp
          :headline-levels 3
@@ -133,15 +152,22 @@
 	 :html-validation-link nil
          :with-toc nil
          :html-head "<link rel=\"stylesheet\"
-                  href=\"../style.css\" type=\"text/css\"/>"
+                  href=\"/css/style.css\" type=\"text/css\"/>"
          :html-preamble t)
-    ))
+	("roam-static"
+	 :base-directory "~/repos/org-roam/"
+	 :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
+	 :publishing-directory "~/org-publish/"
+	 :recursive t
+	 :publishing-function org-publish-attachment
+	 )
+	("roam" :components ("roam-notes" "roam-static"))))
 
 (use-package org-roam
     :ensure t)
 (setq org-roam-directory (file-truename "~/repos/org-roam"))
 (setq org-return-follows-link  t)
-;(setq org-adapt-indentation nil)
+(setq org-adapt-indentation nil)
 (org-roam-db-autosync-mode)
 
 (add-to-list 'display-buffer-alist
@@ -154,12 +180,14 @@
                                      (no-delete-other-windows . t)))))
 
 
+; filetags don't work, because they apply to headings, not files.
+
 (setq org-roam-capture-templates
       ;; Articles should have a link via ROAM_REF
       '(("a" "article" plain
-         "%?"
+         "- [[%^{Url}][${title}]]\n- Author(s): %^{Authors}\n- Published:%^{Published}\n\n* Summary\n%?\n* Notes\n\n* Quotes\n\n* References\n"
          :if-new (file+head "articles/%<%Y%m%d%H%M%S>-${slug}.org"
-                            "#+title: ${title}\n#+filetags: :article:\n#+date: %u\n\n- Article Text: %?\n- Author(s):\n- Published:\n\n* Summary\n\n*Notes\n\n* Quotes\n\n*References\n")
+                            "#+title: ${title}\n#+date: %u\n#+hugo_lastmod: Time-stamp: <>\n")
          :immediate-finish t
          :unnarrowed t)
 	("t" "talk" plain
