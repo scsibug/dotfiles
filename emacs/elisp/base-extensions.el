@@ -160,7 +160,7 @@
          :with-toc nil
 	 :with-author nil
 	 :with-creator t
-	 :time-stamp-file t
+	 :time-stamp-file nil
          :html-head "<link rel=\"stylesheet\" href=\"https://cdn.simplecss.org/simple.min.css\" />
                      <link rel=\"stylesheet\" href=\"/css/style.css\" type=\"text/css\"/>"
          :html-preamble t)
