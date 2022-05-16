@@ -1,8 +1,8 @@
 (package-initialize)
-(setq package-archives
-      '(("melpa" . "https://melpa.org/packages/")
-	("org" . "https://orgmode.org/elpa/")
-	("elpy" . "http://jorgenschaefer.github.io/packages/")))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/"))
+(add-to-list 'package-archives '("elpy" . "http://jorgenschaefer.github.io/packages/"))
+
 
 (when (not package-archive-contents)
   (package-refresh-contents))
