@@ -134,7 +134,14 @@
 ;(setq org-html-head-include-scripts nil)
 
 ;; add last-modified time
-(add-hook 'before-save-hook 'time-stamp)
+;;(add-hook 'before-save-hook 'time-stamp)
+
+  ;; Update files with last modifed date, when #+lastmod: is available
+(setq time-stamp-active t
+      time-stamp-start "#\\+lastmod:[ \t]*"
+      time-stamp-end "$"
+      time-stamp-format "%04Y-%02m-%02d")
+(add-hook 'before-save-hook 'time-stamp nil)
 
 (use-package htmlize
   :ensure t)
@@ -196,47 +203,55 @@
 ; filetags don't work, because they apply to headings, not files.
 
 (setq org-roam-capture-templates
+      ;; Fleeting notes
+      '(("f" "fleeting" plain
+         "%?"
+         :if-new (file+olp "inbox.org"
+                            "* ${title}\n\n")
+         :immediate-finish t
+         :unnarrowed t)
       ;; Articles should have a link via ROAM_REF
-      '(("a" "article" plain
+      ("a" "article" plain
          "- [[%^{Url}][${title}]]\n- Author(s): %^{Authors}\n- Published:%^{Published}\n\n* Summary\n%?\n* Notes\n\n* Quotes\n\n* References\n"
-         :if-new (file+head "articles/%<%Y%m%d%H%M%S>-${slug}.org"
-                            "#+title: ${title}\n#+category: ${title}\n#+date: %u\n#+hugo_lastmod: Time-stamp: <>\n")
+         :if-new (file+head "articles/%<%Y%m%d>-${slug}.org"
+                            "#+lastmod: Time-stamp: <>\n#+title: ${title}\n#+category: ${title}\n#+date: %u\n#+filetags: :@article:\n")
          :immediate-finish t
          :unnarrowed t)
 	("t" "talk" plain
-         "%?"
-         :if-new (file+head "talks/%<%Y%m%d%H%M%S>-${slug}.org"
-                            "#+title: ${title}\n#+category: ${title}\n#+filetags: :talk:\n#+date: %u\n\n- Presentation Video: %?\n- Speaker(s):\n- Length:\n- Published:\n\n* Summary\n\n*Notes\n\n*Quotes\n\n*References\n")
+         "- [[%^{Url}][${title}]]\n- Speaker(s): %^{Speakers}\n- Length (min):%^{Length (min)}\n- Published: %^{Published}\n\n* Summary\n\n*Notes\n\n*Quotes\n\n*References\n"
+         :if-new (file+head "talks/%<%Y%m%d>-${slug}.org"
+                            "#+lastmod: Time-stamp: <>\n#+title: ${title}\n#+category: ${title}\n#+date: %u\n#+filetags: :@talk:\n")
          :immediate-finish t
          :unnarrowed t)
 	("b" "book" plain
-         "%?"
-         :if-new (file+head "books/%<%Y%m%d%H%M%S>-${slug}.org"
-			    "#+title: ${title}\n#+category: ${title}\n#+filetags: :book:\n#+date: %u\n\n- Book Link: %?\n- Author(s):\n- ISBN:\n- Published:\n\n* Summary\n\n*Notes\n\n*Quotes\n\n*References\n")
+         "#+title: ${title}\n#+category: ${title}\n#+filetags: :book:\n#+date: %u\n\n- Book Link: %?\n- Author(s):\n- ISBN:\n- Published:\n\n* Summary\n\n*Notes\n\n*Quotes\n\n*References\n"
+         :if-new (file+head "books/%<%Y%m%d>-${slug}.org"
+			    "#+lastmod: Time-stamp: <>\n#+title: ${title}\n#+category: ${title}\n#+date: %u\n#+filetags: :@book:\n")
          :immediate-finish t
          :unnarrowed t)
 	("s" "software" plain
-         "%?"
-         :if-new (file+head "software/%<%Y%m%d%H%M%S>-${slug}.org"
-                            "#+title: ${title}\n#+category: ${title}\n#+filetags: :software:\n#+date: %u\n\n- Homepage: %?\n")
+	 "- Homepage: %^{Project Homepage}\n\n*Summary\n\n%?\n*Configuration Notes\n\n"
+         :if-new (file+head "software/%<%Y%m%d>-${slug}.org"
+			    "#+lastmod: Time-stamp: <>\n#+title: ${title}\n#+category: ${title}\n#+date: %u\n#+filetags: :@software:\n")
          :immediate-finish t
          :unnarrowed t)
 	("h" "hardware" plain
-         "%?"
-         :if-new (file+head "hardware/%<%Y%m%d%H%M%S>-${slug}.org"
-                            "#+title: ${title}\n#+category: ${title}\n#+filetags: :hardware:\n#+date: %u\n\n- Homepage: %?\n- Manufacturer:\n- Model:\n")
+	 "#+title: ${title}\n#+category: ${title}\n#+filetags: :hardware:\n#+date: %u\n\n- Homepage: %?\n- Manufacturer:\n- Model:\n"
+
+         :if-new (file+head "hardware/%<%Y%m%d>-${slug}.org"
+			    "#+lastmod: Time-stamp: <>\n#+title: ${title}\n#+category: ${title}\n#+date: %u\n#+filetags: :@software:\n")
          :immediate-finish t
          :unnarrowed t)
 	("c" "concept" plain
-         "%?"
-         :if-new (file+head "concepts/%<%Y%m%d%H%M%S>-${slug}.org"
-                            "#+title: ${title}\n#+category: ${title}\n#+filetags: :concept:\n#+date: %u\n\n%?/Concept Summary/\n\n* References\n")
+         "%?/Concept Summary/\n\n* References\n"
+         :if-new (file+head "concepts/%<%Y%m%d>-${slug}.org"
+			    "#+lastmod: Time-stamp: <>\n#+title: ${title}\n#+category: ${title}\n#+date: %u\n#+filetags: :@concept:\n")
          :immediate-finish t
          :unnarrowed t)
 	("n" "note" plain
-         "%?"
-         :if-new (file+head "notes/%<%Y%m%d%H%M%S>-${slug}.org"
-                            "#+title: ${title}\n#+category: ${title}\n#+filetags: :note:\n#+date: %u")
+	 "%?"
+         :if-new (file+head "notes/%<%Y%m%d>-${slug}.org"
+			    "#+lastmod: Time-stamp: <>\n#+title: ${title}\n#+category: ${title}\n#+date: %u\n#+filetags: :@note:\n")
          :immediate-finish t
          :unnarrowed t)))
 
