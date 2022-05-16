@@ -204,12 +204,13 @@
 
 (setq org-roam-capture-templates
       ;; Fleeting notes
-      '(("f" "fleeting" plain
-         "%?"
-         :if-new (file+olp "inbox.org"
-                            "* ${title}\n\n")
+      '(("f" "fleeting" entry
+         "** TODO ${title}\n%?"
+         :target (file+olp "inbox.org" ("Inbox"))
          :immediate-finish t
-         :unnarrowed t)
+	 :jump-to-captured t
+	 :empty-lines 1
+	 :unnarrowed t)
       ;; Articles should have a link via ROAM_REF
       ("a" "article" plain
          "- [[%^{Url}][${title}]]\n- Author(s): %^{Authors}\n- Published:%^{Published}\n\n* Summary\n%?\n* Notes\n\n* Quotes\n\n* References\n"
