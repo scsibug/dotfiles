@@ -119,9 +119,10 @@
          ("C-c n a" . org-roam-alias-add)
          ("C-c n l" . org-roam-buffer-toggle))))
 
-
-
 (require 'ox-publish)
+
+(use-package org-cliplink
+  :ensure t)
 
 (use-package ox-hugo
   :ensure t   ;Auto-install the package from Melpa
@@ -203,8 +204,15 @@
 ; filetags don't work, because they apply to headings, not files.
 
 (setq org-roam-capture-templates
-      ;; Fleeting notes
-      '(("f" "fleeting" entry
+      '(
+	;; Bookmarks
+	("k" "bookmark" entry
+	 "* TODO %(org-cliplink-capture) \n  SCHEDULED: %t\n"
+	 :target (file+olp "bookmarks.org" ())
+	 :empty-lines 1
+	 )
+	;; Fleeting notes
+	("f" "fleeting" entry
          "** TODO ${title}\n%?"
          :target (file+olp "inbox.org" ("Inbox"))
          :immediate-finish t
@@ -225,7 +233,7 @@
          :immediate-finish t
          :unnarrowed t)
 	("b" "book" plain
-         "#+title: ${title}\n#+category: ${title}\n#+filetags: :book:\n#+date: %u\n\n- Book Link: %?\n- Author(s):\n- ISBN:\n- Published:\n\n* Summary\n\n*Notes\n\n*Quotes\n\n*References\n"
+         "- Book Link: %^{Url}\n- Author(s): %^{Authors}\n- ISBN: =%^{ISBN}=\n- Published: [%^{Published}]\n\n* Summary\n\n%?* Notes\n\n* Quotes\n\n* References\n"
          :if-new (file+head "books/%<%Y%m%d>-${slug}.org"
 			    "#+lastmod: Time-stamp: <>\n#+title: ${title}\n#+category: ${title}\n#+date: %u\n#+filetags: :@book:\n")
          :immediate-finish t
@@ -247,6 +255,12 @@
          "%?/Concept Summary/\n\n* References\n"
          :if-new (file+head "concepts/%<%Y%m%d>-${slug}.org"
 			    "#+lastmod: Time-stamp: <>\n#+title: ${title}\n#+category: ${title}\n#+date: %u\n#+filetags: :@concept:\n")
+         :immediate-finish t
+         :unnarrowed t)
+	("p" "project" plain
+         "%?/Project Summary/\n\n* References\n"
+         :if-new (file+head "projects/%<%Y%m%d>-${slug}.org"
+			    "#+lastmod: Time-stamp: <>\n#+title: ${title}\n#+category: ${title}\n#+date: %u\n#+filetags: :@project:\n")
          :immediate-finish t
          :unnarrowed t)
 	("n" "note" plain
