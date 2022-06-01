@@ -119,6 +119,10 @@
          ("C-c n a" . org-roam-alias-add)
          ("C-c n l" . org-roam-buffer-toggle))))
 
+(use-package org-tree-slide
+  :custom
+  (org-image-actual-width nil))
+
 (require 'ox-publish)
 
 (use-package org-cliplink
