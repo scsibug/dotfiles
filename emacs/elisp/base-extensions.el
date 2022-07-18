@@ -7,8 +7,9 @@
   )
 (use-package avy
   :bind
-  ("C-c SPC" . avy-goto-char))
+  ("C-c SPC" . avy-goto-char-2))
 
+; auto complete
 (use-package company
   :config
   (add-hook 'after-init-hook 'global-company-mode))
@@ -355,15 +356,15 @@
   :bind (("C-c u" . my-duplicate-thing)
          ("C-c C-u" . my-duplicate-thing)))
 
-(use-package neuron-mode)
+;(use-package neuron-mode)
 
 (use-package ledger-mode)
 
-(use-package haskell-mode)
+;(use-package haskell-mode)
 
-(use-package tidal)
-(setq tidal-interpreter "/Users/scsibug/.ghcup/bin/ghci")
-(setq tidal-boot-script-path "~/.cabal/store/ghc-8.10.4/tdl-1.7.4-ee4f92ea/share/BootTidal.hs")
+;(use-package tidal)
+;(setq tidal-interpreter "/Users/scsibug/.ghcup/bin/ghci")
+;(setq tidal-boot-script-path "~/.cabal/store/ghc-8.10.4/tdl-1.7.4-ee4f92ea/share/BootTidal.hs")
 
 (use-package rainbow-delimiters
   :hook ((prog-mode . rainbow-delimiters-mode)))
