@@ -1,5 +1,7 @@
 ;;(toggle-debug-on-error)
 
+(use-package all-the-icons :ensure t)
+
 (when (display-graphic-p)
   (use-package fira-code-mode
     :custom (fira-code-mode-disabled-ligatures '("[]" "x"))  ; ligatures you don't want
@@ -8,6 +10,15 @@
 (use-package avy
   :bind
   ("C-c SPC" . avy-goto-char-2))
+
+(use-package rust-mode
+  :ensure t)
+;(use-package eglot)
+;(require 'rust-mode)
+;(add-hook 'rust-mode-hook 'eglot-ensure)
+
+;(setq rustic-lsp-client 'eglot)
+;(setq eglot-rust-server 'rust-analyzer)
 
 ; auto complete
 (use-package company
