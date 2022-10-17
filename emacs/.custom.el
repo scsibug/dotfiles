@@ -14,7 +14,8 @@
  '(bold ((t (:background "black" :foreground "white smoke" :weight bold))))
  '(org-level-1 ((t (:extend nil :foreground "DodgerBlue1" :height 2.0))))
  '(org-level-2 ((t (:extend nil :foreground "medium spring green" :height 1.7))))
- '(org-level-3 ((t (:extend nil :foreground "dark orange" :height 1.4)))))
+ '(org-level-3 ((t (:extend nil :foreground "dark orange" :height 1.4))))
+ '(org-level-4 ((t (:extend nil :foreground "gold")))))
 
 
 
