@@ -14,3 +14,5 @@
 	process = git-lfs filter-process
 [commit]
 	template = ~/.gitmessage
+[merge]
+    conflictstyle = diff3
