@@ -395,4 +395,6 @@
 ;  :after all-the-icons
 ;  :hook (dired-mode . all-the-icons-dired-mode))
 
+(add-hook 'java-mode-hook (lambda () (setq c-basic-offset 2)))
+
 (provide 'base-extensions)
