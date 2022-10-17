@@ -15,4 +15,6 @@
 [commit]
 	template = ~/.gitmessage
 [merge]
-    conflictstyle = diff3
+	conflictstyle = diff3
+[credentials]
+	helper = store
