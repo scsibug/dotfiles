@@ -135,7 +135,11 @@
 
 (use-package org-tree-slide
   :custom
-  (org-image-actual-width nil))
+  (org-image-actual-width nil)
+  (org-tree-slide-breadcrumbs " > "))
+
+(global-set-key (kbd "<f8>") 'org-tree-slide-mode)
+(global-set-key (kbd "S-<f8>") 'org-tree-slide-skip-done-toggle)
 
 (require 'ox-publish)
 
@@ -147,6 +151,9 @@
   :pin melpa  ;`package-archives' should already have ("melpa" . "https://melpa.org/packages/")
   :after ox)
 
+(use-package unfill)
+
+(use-package ox-reveal)
 
 ;; Don't include default CSS
 (setq org-html-head-include-default-style nil)
