@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(indicate-empty-lines t)
- '(package-selected-packages '(eglot flymake rustic avy fira-code-mode use-package)))
+ '(package-selected-packages '(eglot flycheck rustic avy fira-code-mode use-package)))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

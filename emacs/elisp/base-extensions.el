@@ -15,7 +15,7 @@
 ;; Programming icons
 (use-package all-the-icons)
 
-;; Autocompletion
-(use-package flymake)
+;; Syntax
+(use-package flycheck)
 
 (provide 'base-extensions)
