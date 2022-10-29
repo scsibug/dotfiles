@@ -7,6 +7,9 @@
     :if (display-graphic-p)
     :hook prog-mode) ; mode to enable fira-code-mode in
 
+(use-package avy
+  :bind
+  ("C-c SPC" . avy-goto-char-2))
 
 ;; Programming icons
 (use-package all-the-icons)
