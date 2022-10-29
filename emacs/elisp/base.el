@@ -67,5 +67,25 @@
  bookmark-save-flag 1
  bookmark-default-file (concat temp-dir "/bookmarks"))
 
+
+
+;; Backup in a dedicated place
+(setq
+ history-length                     1000
+ backup-inhibited                   nil
+ make-backup-files                  t
+ auto-save-default                  t
+ auto-save-list-file-name           (concat temp-dir "/autosave")
+ create-lockfiles                   nil
+ backup-directory-alist            `((".*" . ,(concat temp-dir "/backup/")))
+ auto-save-file-name-transforms    `((".*" ,(concat temp-dir "/auto-save-list/") t)))
+;; Create necessary directory
+(unless (file-exists-p (concat temp-dir "/auto-save-list"))
+		       (make-directory (concat temp-dir "/auto-save-list") :parents))
+
+;; When the file on disk changes, auto-revert the buffer
+(global-auto-revert-mode t)
+
+
 (provide 'base)
 
