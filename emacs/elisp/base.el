@@ -63,8 +63,8 @@
 
 ;; Bookmarks
 (setq
- ;; persistent bookmarks
- bookmark-save-flag t
+ ;; persistent bookmarks, save on every change
+ bookmark-save-flag 1
  bookmark-default-file (concat temp-dir "/bookmarks"))
 
 (provide 'base)
