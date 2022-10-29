@@ -292,6 +292,8 @@
 ;  (setq org-projectile-per-project-filepath "todo.org"
 ;	org-agenda-files (append org-agenda-files (org-projectile-todo-files))))
 
+(use-package org-roam-ui)
+
 (use-package org-bullets
   :config
   (setq org-hide-leading-stars t)
