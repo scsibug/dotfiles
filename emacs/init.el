@@ -6,6 +6,7 @@
 (require 'base-extensions)
 (require 'base-functions)
 (require 'base-global-keys)
+(require 'lang-rust)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

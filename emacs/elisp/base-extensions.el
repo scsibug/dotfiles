@@ -7,10 +7,15 @@
     :if (display-graphic-p)
     :hook prog-mode) ; mode to enable fira-code-mode in
 
+;; jump to locations
 (use-package avy
   :bind
   ("C-c SPC" . avy-goto-char-2))
 
 ;; Programming icons
 (use-package all-the-icons)
+
+;; Autocompletion
+(use-package flymake)
+
 (provide 'base-extensions)

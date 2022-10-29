@@ -16,7 +16,12 @@
 (when (  fboundp 'scroll-bar-mode)
   (scroll-bar-mode -1))
 
-;; Highlight matching parens
-(show-paren-mode 1)
+;; Higher GC threshold, only run on idle/focus-change
+;; https://www.bytedude.com/improving-emacs-performance/
+(add-hook 'after-init-hook
+          #'(lambda ()
+              (setq gc-cons-threshold (* 100 1000 1000))))
+(add-hook 'focus-out-hook 'garbage-collect)
+(run-with-idle-timer 5 t 'garbage-collect)
 
 (provide 'startup)

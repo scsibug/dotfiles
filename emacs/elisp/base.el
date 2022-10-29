@@ -57,6 +57,9 @@
       kill-whole-line t
       )
 
+;; Highlight matching parens
+(show-paren-mode 1)
+
 ;; Use a dedicated file for customizations
 (setq custom-file "~/.emacs.d/.custom.el")
 (load custom-file)
