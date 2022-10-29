@@ -6,7 +6,7 @@
 ;; install use-package
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
-;; 
+;;
 (require 'use-package)
 
 ;; setup a private directory in .emacs.d
@@ -86,6 +86,21 @@
 ;; When the file on disk changes, auto-revert the buffer
 (global-auto-revert-mode t)
 
+;; Delete trailing whitespace before save
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; Detect and provide performance mitigations for files with very long
+;; lines
+(global-so-long-mode)
+
+
+;; Typing over a selection deletes it
+(delete-selection-mode t)
+
+;; Show column numbers in the mode line
+(column-number-mode)
+
+;; Show line numbers on left-hand side
+(global-display-line-numbers-mode)
 
 (provide 'base)
-
