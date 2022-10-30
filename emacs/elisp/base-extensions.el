@@ -54,8 +54,8 @@
         "Elegance is necessarily unnatural, only achieveable at great expense."
         "The currency in the developer community is enthusiasm."
         "They don't make poles long enough for me want to touch Microsoft products."
-        "A little knowledge is a dangerous thing. I regret that this isn't fatal."
-        ))
+        "A little knowledge is a dangerous thing. I regret that this isn't fatal."))
+
 
 (setq dashboard-banner-logo-title (nth (random (length my-dashboard-quotes)) my-dashboard-quotes))
 (setq dashboard-center-content t)
@@ -68,9 +68,9 @@
   (progn
     (dashboard-setup-startup-hook)
     (dashboard-modify-heading-icons '((recents . "file-text")
-                                      (bookmarks . "book")))
-    )
-  )
+                                      (bookmarks . "book")))))
+
+
 
 (use-package yaml-mode
   :ensure t
@@ -82,17 +82,51 @@
   :defer 20
   :config
   (when (memq window-system '(mac ns))
-    (exec-path-from-shell-copy-env "GOPATH")
-    (exec-path-from-shell-copy-env "PYTHONPATH")
+    (setq exec-path-from-shell-arguments '("-l"))
+    (setq exec-path-from-shell-variables '("PATH" "GOPATH" "PYTHONPATH"))
     (exec-path-from-shell-initialize)))
 
 ;; Lisp editing
 (use-package parinfer-rust-mode
   :ensure t
-  :defer 10
+  :defer 5
   :hook emacs-lisp-mode
   :init
   (setq parinfer-rust-auto-download t))
+
+;; gradually expand regions
+(use-package expand-region
+  :ensure t
+  :defer 5
+  :bind
+  ("C-=" . er/expand-region))
+
+;; bring in counsel, ivy, swiper (autocomplete/search)
+(use-package counsel
+  :ensure t
+  :defer 3
+  :bind
+  ("M-x" . counsel-M-x)
+  ("C-x C-m" . counsel-M-x)
+  ("C-x C-f" . counsel-find-file)
+  ("C-x c k" . counsel-yank-pop)
+  ("C-s" . 'swiper-isearch)
+  ("C-x b" . 'ivy-switch-buffer)
+  ("C-c v" . 'ivy-push-view)
+  ("C-c V" . 'ivy-pop-view)
+  ("C-c k" . 'counsel-rg)
+  ("C-c n" . 'counsel-fzf)
+  ("C-x l" . 'counsel-locate))
+
+
+;; ivy everywhere.
+(ivy-mode 1)
+;; show recent files when switching buffers
+(setq ivy-use-virtual-buffers t)
+;; show current search result number
+(setq ivy-count-format "(%d/%d) ")
+;; wrap-around search
+(setq ivy-wrap t)
 
 (provide 'base-extensions)
 ;;; base-extensions.el ends here

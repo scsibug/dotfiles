@@ -90,9 +90,8 @@
 ;; lines
 (global-so-long-mode)
 
-
 ;; Typing over a selection deletes it
-(delete-selection-mode t)
+;(delete-selection-mode t)
 
 ;; Show column numbers in the mode line
 (column-number-mode)
