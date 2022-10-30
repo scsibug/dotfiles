@@ -135,8 +135,18 @@
   ;; show current search result number
   (setq ivy-count-format "(%d/%d) ")
   ;; wrap-around search
-  (setq ivy-wrap t)
-  (define-key read-expression-map (kbd "C-r") 'counsel-expression-history))
+  (setq ivy-wrap t))
+
+;; Magit
+(use-package magit
+  :ensure t
+  :defer 10
+  :config
+  (setq magit-completing-read-function 'ivy-completing-read))
+
+(use-package magit-popup
+  :ensure t
+  :defer 15)
 
 (provide 'base-extensions)
 ;;; base-extensions.el ends here
