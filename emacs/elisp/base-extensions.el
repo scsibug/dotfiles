@@ -37,7 +37,6 @@
 ;; Initial Dashboard
 ;; select a random quote.
 (setq my-dashboard-quotes
-
       '(;; Tron
 	"On the other side of the screen, it all looks so easy."
 	"User requests are what computers are for!"
@@ -73,11 +72,19 @@
     )
   )
 
-;; omitted - ediff
-
 (use-package yaml-mode
   :ensure t
   :defer 5)
+
+;; copy environment variables to shell on OS X
+(use-package exec-path-from-shell
+  :ensure t
+  :defer 20
+  :config
+  (when (memq window-system '(mac ns))
+    (exec-path-from-shell-copy-env "GOPATH")
+    (exec-path-from-shell-copy-env "PYTHONPATH")
+    (exec-path-from-shell-initialize)))
 
 (provide 'base-extensions)
 ;;; base-extensions.el ends here

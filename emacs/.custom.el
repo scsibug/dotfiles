@@ -5,7 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(indicate-empty-lines t)
  '(package-selected-packages
-   '(rustic yaml-mode dashboard company flycheck avy fira-code-mode all-the-icons use-package)))
+   '(exec-path-from-shell rustic yaml-mode dashboard company flycheck avy fira-code-mode all-the-icons use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
