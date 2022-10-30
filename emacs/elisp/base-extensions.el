@@ -54,7 +54,10 @@
         "Elegance is necessarily unnatural, only achieveable at great expense."
         "The currency in the developer community is enthusiasm."
         "They don't make poles long enough for me want to touch Microsoft products."
-        "A little knowledge is a dangerous thing. I regret that this isn't fatal."))
+        "A little knowledge is a dangerous thing. I regret that this isn't fatal."
+	;; @EmacsRocks
+	"If you think paredit is not for you then you need to become the kind of person that paredit is for."
+	))
 
 
 (setq dashboard-banner-logo-title (nth (random (length my-dashboard-quotes)) my-dashboard-quotes))
@@ -86,14 +89,6 @@
     (setq exec-path-from-shell-variables '("PATH" "GOPATH" "PYTHONPATH"))
     (exec-path-from-shell-initialize)))
 
-;; Lisp editing
-(use-package parinfer-rust-mode
-  :ensure t
-  :defer 5
-  :hook emacs-lisp-mode
-  :init
-  (setq parinfer-rust-auto-download t))
-
 ;; gradually expand regions
 (use-package expand-region
   :ensure t
@@ -111,8 +106,15 @@
   ("C-x C-f" . counsel-find-file)
   ("C-x c k" . counsel-yank-pop)
   ("C-c k" . 'counsel-rg)
-  ("C-c n" . 'counsel-fzf)
   ("C-x l" . 'counsel-locate))
+
+;; ivy / projectile integration
+;; (use-package counsel-projectile
+;;   :bind
+;;   ("C-x v" . counsel-projectile)
+;;   ("C-x c p" . counsel-projectile-ag)
+;;   :config
+;;   (counsel-projectile-on))
 
 (use-package swiper
   :ensure t
@@ -143,6 +145,10 @@
   :defer 10
   :config
   (setq magit-completing-read-function 'ivy-completing-read))
+
+(use-package restclient
+  :ensure t
+  :defer 5)
 
 (provide 'base-extensions)
 ;;; base-extensions.el ends here
