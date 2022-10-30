@@ -14,3 +14,5 @@
 (require 'base-global-keys)
 (require 'ext-org)
 (require 'lang-rust)
+
+;;(add-hook 'java-mode-hook (lambda () (setq c-basic-offset 2)))

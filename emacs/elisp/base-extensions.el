@@ -59,7 +59,6 @@
 	"If you think paredit is not for you then you need to become the kind of person that paredit is for."
 	))
 
-
 (setq dashboard-banner-logo-title (nth (random (length my-dashboard-quotes)) my-dashboard-quotes))
 (setq dashboard-center-content t)
 (setq dashboard-set-heading-icons t)
@@ -72,8 +71,6 @@
     (dashboard-setup-startup-hook)
     (dashboard-modify-heading-icons '((recents . "file-text")
                                       (bookmarks . "book")))))
-
-
 
 (use-package yaml-mode
   :ensure t
@@ -149,6 +146,83 @@
 (use-package restclient
   :ensure t
   :defer 5)
+
+
+(use-package projectile
+  :config
+  (setq projectile-known-projects-file
+        (expand-file-name "projectile-bookmarks.eld" temp-dir))
+
+  (setq projectile-completion-system 'ivy)
+  (projectile-global-mode))
+
+;; display ^L as horizontal rule
+(use-package page-break-lines
+  :ensure t
+  :defer 2)
+
+;; see https://github.com/Fuco1/smartparens
+;; M-x sp-cheat-sheet
+;;(use-package smartparens
+;;  :ensure t)
+;;(require 'smartparens-config)
+;;(add-hook 'js-mode-hook #'smartparens-strict-mode)
+;;(add-hook 'emacs-lisp-mode-hook #'smartparens-strict-mode)
+
+;; help identify available commands
+(use-package which-key
+  :config
+  (which-key-mode)
+  (which-key-setup-side-window-bottom)
+  :custom (which-key-idle-delay 1.2))
+
+;; easily move between windows
+(use-package windmove
+  :ensure t
+  :defer 2
+  :bind
+  ("C-x <up>" . windmove-up)
+  ("C-x <down>" . windmove-down)
+  ("C-x <left>" . windmove-left)
+  ("C-x <right>" . windmove-right))
+
+;; C-u to duplicate line or region
+(use-package duplicate-thing
+  :ensure t
+  :defer 2
+  :init
+  (defun my-duplicate-thing ()
+    "Duplicate thing at point without changing the mark."
+    (interactive)
+    (save-mark-and-excursion (duplicate-thing 1)))
+  :bind (("C-c u" . my-duplicate-thing)
+         ("C-c C-u" . my-duplicate-thing)))
+
+;; ledger-cli
+(use-package ledger-mode
+  :ensure t
+  :defer 2)
+
+;;(use-package rainbow-delimiters
+;;  :ensure t
+;;  :defer 2
+;;  :hook ((prog-mode . rainbow-delimiters-mode)))
+
+(use-package recentf
+  :ensure t
+  :config
+  (setq recentf-save-file (recentf-expand-file-name "~/.emacs.d/private/cache/recentf"))
+  (recentf-mode 1))
+
+(use-package undo-tree
+  :ensure t
+  :config
+  ;; Remember undo history
+  (setq
+   undo-tree-auto-save-history nil
+   undo-tree-history-directory-alist `(("." . ,(concat temp-dir "/undo/"))))
+  (global-undo-tree-mode 1))
+
 
 (provide 'base-extensions)
 ;;; base-extensions.el ends here

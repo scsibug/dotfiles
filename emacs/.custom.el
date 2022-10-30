@@ -5,7 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(indicate-empty-lines t)
  '(package-selected-packages
-   '(ox-publish restclient restclient-mode ox-hugo org-cliplink org-tree-slide magit counsel expand-region exec-path-from-shell rustic yaml-mode dashboard company flycheck avy fira-code-mode all-the-icons use-package)))
+   '(undo-tree ledger-mode which-key rainbow-delimiters duplicate-thing org-bullets org-roam simple-httpd htmlize projectile smartparens page-break-lines ox-publish restclient restclient-mode ox-hugo org-cliplink org-tree-slide magit counsel expand-region exec-path-from-shell rustic yaml-mode dashboard company flycheck avy fira-code-mode all-the-icons use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
