@@ -68,6 +68,11 @@
   :ensure t
   :config
   (progn
+    (setq dashboard-items '((recents  . 5)
+                        (bookmarks . 5)
+                        (projects . 5)
+                        (registers . 5)))
+    (setq show-week-agenda-p nil)
     (dashboard-setup-startup-hook)
     (dashboard-modify-heading-icons '((recents . "file-text")
                                       (bookmarks . "book")))))

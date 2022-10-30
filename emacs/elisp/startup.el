@@ -1,5 +1,8 @@
 ;; Settings relevant to initial startup
 
+;; prioritize displaying the screen before handling events
+(setq redisplay-dont-pause t)
+
 ;; Don't display anything on startup
 (defun do-nothing (interactive))
 (defalias 'view-emacs-news 'do-nothing)

@@ -81,7 +81,7 @@
 		       (make-directory (concat temp-dir "/auto-save-list") :parents))
 
 ;; When the file on disk changes, auto-revert the buffer
-(global-auto-revert-mode t)
+;;(global-auto-revert-mode t)
 
 ;; Delete trailing whitespace before save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
