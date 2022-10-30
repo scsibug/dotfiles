@@ -14,7 +14,7 @@
 ;; jump to locations
 (use-package avy
   :ensure t
-  :defer 5
+  :defer 10
   :bind
   ("C-c SPC" . 'avy-goto-char-2))
 
@@ -30,20 +30,33 @@
 
 ;; Completion
 (use-package company
+  :ensure t
   :defer 5
   :hook ('after-init . 'global-company-mode))
 
 ;; Initial Dashboard
-;; select a random (tron) quote.
+;; select a random quote.
 (setq my-dashboard-quotes
-      '("On the other side of the screen, it all looks so easy."
+
+      '(;; Tron
+	"On the other side of the screen, it all looks so easy."
 	"User requests are what computers are for!"
 	"I still don't understand why you want to break into the system."
 	"I shouldn't have written all of those tank programs."
 	"How are you going to run the universe if you can't answer a few unsolvable problems, huh?"
 	"Come on, you scuzzy data, be in there."
 	"This code disk means freedom."
-	"Look. This... is all a mistake. I'm just a compound interest program."))
+	"Look. This... is all a mistake. I'm just a compound interest program."
+	;; Erik Naggum
+	"If you want to know why Lisp doesn't win around you, find a mirror."
+	"A word says more than a thousand images."
+	"Languages shape the way we think, or don't."
+	"Enlightenment is probably antithetical to impatience."
+	"Elegance is necessarily unnatural, only achieveable at great expense."
+	"The currency in the developer community is enthusiasm."
+	"They don't make poles long enough for me want to touch Microsoft products."
+	"A little knowledge is a dangerous thing. I regret that this isn't fatal."
+	))
 
 (setq dashboard-banner-logo-title (nth (random (length my-dashboard-quotes)) my-dashboard-quotes))
 (setq dashboard-center-content t)
@@ -59,6 +72,12 @@
 				      (bookmarks . "book")))
     )
   )
+
+;; omitted - ediff
+
+(use-package yaml-mode
+  :ensure t
+  :defer 5)
 
 (provide 'base-extensions)
 ;;; base-extensions.el ends here

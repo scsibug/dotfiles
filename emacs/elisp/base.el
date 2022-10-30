@@ -60,17 +60,11 @@
 ;; Highlight matching parens
 (show-paren-mode 1)
 
-;; Use a dedicated file for customizations
-(setq custom-file "~/.emacs.d/.custom.el")
-(load custom-file)
-
 ;; Bookmarks
 (setq
  ;; persistent bookmarks, save on every change
  bookmark-save-flag 1
  bookmark-default-file (concat temp-dir "/bookmarks"))
-
-
 
 ;; Backup in a dedicated place
 (setq
