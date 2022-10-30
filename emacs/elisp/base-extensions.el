@@ -110,23 +110,33 @@
   ("C-x C-m" . counsel-M-x)
   ("C-x C-f" . counsel-find-file)
   ("C-x c k" . counsel-yank-pop)
-  ("C-s" . 'swiper-isearch)
-  ("C-x b" . 'ivy-switch-buffer)
-  ("C-c v" . 'ivy-push-view)
-  ("C-c V" . 'ivy-pop-view)
   ("C-c k" . 'counsel-rg)
   ("C-c n" . 'counsel-fzf)
   ("C-x l" . 'counsel-locate))
 
+(use-package swiper
+  :ensure t
+  :defer 3
+  :bind
+  ("C-s" . 'swiper-isearch))
 
-;; ivy everywhere.
-(ivy-mode 1)
-;; show recent files when switching buffers
-(setq ivy-use-virtual-buffers t)
-;; show current search result number
-(setq ivy-count-format "(%d/%d) ")
-;; wrap-around search
-(setq ivy-wrap t)
+(use-package ivy
+  :ensure t
+  :bind
+  ("C-x C-r" . 'ivy-resume)
+  ("C-x b" . 'ivy-switch-buffer)
+  ("C-c v" . 'ivy-push-view)
+  ("C-c V" . 'ivy-pop-view)
+  :config
+  ;; ivy everywhere.
+  (ivy-mode 1)
+  ;; show recent files when switching buffers
+  (setq ivy-use-virtual-buffers t)
+  ;; show current search result number
+  (setq ivy-count-format "(%d/%d) ")
+  ;; wrap-around search
+  (setq ivy-wrap t)
+  (define-key read-expression-map (kbd "C-r") 'counsel-expression-history))
 
 (provide 'base-extensions)
 ;;; base-extensions.el ends here
