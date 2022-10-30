@@ -144,9 +144,5 @@
   :config
   (setq magit-completing-read-function 'ivy-completing-read))
 
-(use-package magit-popup
-  :ensure t
-  :defer 15)
-
 (provide 'base-extensions)
 ;;; base-extensions.el ends here

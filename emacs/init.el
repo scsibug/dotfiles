@@ -12,4 +12,5 @@
 (require 'base-extensions)
 (require 'base-functions)
 (require 'base-global-keys)
+(require 'ext-org)
 (require 'lang-rust)
