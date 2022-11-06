@@ -23,6 +23,9 @@ ln -svf "${GIT_ROOT}/config/git/gitmessage" ~/.gitmessage
 ln -svf "${GIT_ROOT}/config/conky" ~/.config/
 # Graphics (Fedora, but could be platform-dependent)
 
+## Starship
+ln -svf "${GIT_ROOT}/config/starship.toml" ~/.config/starship.toml
+
 ### Gnome
 # Disable indexing
 touch ~/.nomedia
