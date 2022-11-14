@@ -21,6 +21,18 @@ $ RA=$(rustup which --toolchain stable rust-analyzer)
 $ ln -s $RA ~/.cargo/bin
 ----
 
+# Install Starship
+
+----
+cargo install starship --locked
+----
+
+Add the following to zshrc:
+
+----
+eval "$(starship init zsh)"
+----
+
 # Install FZF/Ripgrep
 
 Counsel has integrations that use fzf and rg.
