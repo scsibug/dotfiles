@@ -3,26 +3,26 @@
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/"))
 (add-to-list 'package-archives '("elpy" . "http://jorgenschaefer.github.io/packages/"))
 
-
-(when (not package-archive-contents)
-  (package-refresh-contents))
-
+;; install use-package
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
+;;
 (require 'use-package)
 
-(defconst private-dir  (expand-file-name "private" user-emacs-directory))
+;; setup a private directory in .emacs.d
+(defconst private-dir (expand-file-name "private"
+					user-emacs-directory))
+;; setup a temp cache directory
 (defconst temp-dir (format "%s/cache" private-dir)
-  "Hostname-based elisp temp directories")
+  "elisp temp directories")
 
-;; Core settings
-;; UTF-8 please
+;; Use UTF-8
 (set-charset-priority 'unicode)
-(setq locale-coding-system   'utf-8)   ; pretty
-(set-terminal-coding-system  'utf-8)   ; pretty
-(set-keyboard-coding-system  'utf-8)   ; pretty
-(set-selection-coding-system 'utf-8)   ; please
-(prefer-coding-system        'utf-8)   ; with sugar on top
+(setq locale-coding-system   'utf-8)
+(set-terminal-coding-system  'utf-8)
+(set-keyboard-coding-system  'utf-8)
+(set-selection-coding-system 'utf-8)
+(prefer-coding-system        'utf-8)
 (setq default-process-coding-system '(utf-8-unix . utf-8-unix))
 
 ;; Emacs customizations
@@ -33,23 +33,20 @@
       require-final-newline               t
       visible-bell                        nil
       ring-bell-function                  'ignore
-      custom-file                         "~/.emacs.d/.custom.el"
-      ;; http://ergoemacs.org/emacs/emacs_stop_cursor_enter_prompt.html
+      ;; http://xahlee.info/emacs/emacs/emacs_stop_cursor_enter_prompt.html
       minibuffer-prompt-properties
-      '(read-only t point-entered minibuffer-avoid-prompt face minibuffer-prompt)
-
+      '(read-only t point-entered minibuffer-avoid-prompt cursor-intangible t face minibuffer-prompt)
       ;; Disable non selected window highlight
       cursor-in-non-selected-windows     nil
       highlight-nonselected-windows      nil
       ;; PATH
       exec-path                          (append exec-path '("/usr/local/bin/"))
+      ;; do not insert tabs on indentation
       indent-tabs-mode                   nil
-      inhibit-startup-message            t
-      inhibit-splash-screen              t
       fringes-outside-margins            t
       x-select-enable-clipboard          t
       use-package-always-ensure          t
-      initial-scratch-message nil
+      ;;initial-scratch-message nil
       ;; Never ding at me, ever.
       ring-bell-function 'ignore
       ;; Prompts should go in the minibuffer, not in a GUI.
@@ -60,13 +57,16 @@
       kill-whole-line t
       )
 
+;; Highlight matching parens
+(show-paren-mode 1)
+
 ;; Bookmarks
 (setq
- ;; persistent bookmarks
- bookmark-save-flag                      t
- bookmark-default-file              (concat temp-dir "/bookmarks"))
+ ;; persistent bookmarks, save on every change
+ bookmark-save-flag 1
+ bookmark-default-file (concat temp-dir "/bookmarks"))
 
-;; Backups enabled, use nil to disable
+;; Backup in a dedicated place
 (setq
  history-length                     1000
  backup-inhibited                   nil
@@ -76,48 +76,27 @@
  create-lockfiles                   nil
  backup-directory-alist            `((".*" . ,(concat temp-dir "/backup/")))
  auto-save-file-name-transforms    `((".*" ,(concat temp-dir "/auto-save-list/") t)))
-
+;; Create necessary directory
 (unless (file-exists-p (concat temp-dir "/auto-save-list"))
 		       (make-directory (concat temp-dir "/auto-save-list") :parents))
 
-;(fset 'yes-or-no-p 'y-or-n-p)
-(global-auto-revert-mode t)
-
-;; Don't display anything on startup
-(defun do-nothing (interactive))
-(defalias 'view-emacs-news 'do-nothing)
-(defalias 'describe-gnu-project 'do-nothing)
-
-;; Disable toolbar & menubar
-(menu-bar-mode -1)
-(when (fboundp 'tool-bar-mode)
-  (tool-bar-mode -1))
-(when (  fboundp 'scroll-bar-mode)
-  (scroll-bar-mode -1))
-(tooltip-mode -1)
-(show-paren-mode 1)
-
-;; Need to load custom file to avoid being overwritten
-;; more at https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html
-(load custom-file)
+;; When the file on disk changes, auto-revert the buffer
+;;(global-auto-revert-mode t)
 
 ;; Delete trailing whitespace before save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-;; Handle very long lines everywhere
+;; Detect and provide performance mitigations for files with very long
+;; lines
 (global-so-long-mode)
 
-;; paren completion
-;; disabled due to parinfer mode
-;;(electric-pair-mode)
+;; Typing over a selection deletes it
+;(delete-selection-mode t)
 
-(delete-selection-mode t)
+;; Show column numbers in the mode line
 (column-number-mode)
 
-;; display line number
-(when (version<= "26.0.50" emacs-version )
-;;  (global-hl-line-mode) ;; don't highlight current line
-  (global-display-line-numbers-mode))
+;; Show line numbers on left-hand side
+(global-display-line-numbers-mode)
 
 (provide 'base)
-;;; base ends here
