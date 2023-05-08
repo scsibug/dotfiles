@@ -16,4 +16,6 @@
 (require 'lang-rust)
 
 ;;(add-hook 'java-mode-hook (lambda () (setq c-basic-offset 2)))
+
+;; enable downcase-region command (C-x C-l)
 (put 'downcase-region 'disabled nil)
