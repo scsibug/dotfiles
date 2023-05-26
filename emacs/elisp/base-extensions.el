@@ -1,6 +1,8 @@
 ;;; base-extensions.el --- Load and configure extensions.
 ;;; Commentary:
 ;;; Code:
+
+;; this does not /install/ the fonts.  Run M-x all-the-icons-install-fonts for that.
 (use-package all-the-icons
   :ensure t
   :if (display-graphic-p))
