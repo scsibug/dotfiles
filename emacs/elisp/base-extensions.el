@@ -139,6 +139,8 @@
   ;; wrap-around search
   (setq ivy-wrap t))
 
+(add-to-list 'exec-path "/Users/scsibug/.nix-profile/bin")
+
 ;; Magit
 (use-package magit
   :ensure t
@@ -160,7 +162,13 @@
   :ensure t
   :defer 5)
 
+(use-package projectile
+  :config
+  (setq projectile-known-projects-file
+	(expand-file-name "projectile-bookmarks.eld" temp-dir))
 
+  (setq projectile-completion-system 'ivy)
+  (projectile-global-mode))
 
 (use-package magit-popup)
 
