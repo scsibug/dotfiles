@@ -140,6 +140,8 @@
   ;; wrap-around search
   (setq ivy-wrap t))
 
+(add-to-list 'exec-path "/Users/scsibug/.nix-profile/bin")
+
 ;; Magit
 (use-package magit
   :ensure t
@@ -151,14 +153,30 @@
   :ensure t
   :defer 5)
 
-
 (use-package projectile
   :config
   (setq projectile-known-projects-file
-        (expand-file-name "projectile-bookmarks.eld" temp-dir))
-
+	(expand-file-name "projectile-bookmarks.eld" temp-dir))
   (setq projectile-completion-system 'ivy)
   (projectile-global-mode))
+
+(use-package magit-popup)
+
+(use-package multiple-cursors
+  :bind
+  ("C-S-c C-S-c" . mc/edit-lines)
+  ("C->" . mc/mark-next-like-this)
+  ("C-<" . mc/mark-previous-like-this)
+  ("C-c C->" . mc/mark-all-like-this))
+
+
+(use-package neotree
+  :config
+  (setq neo-theme 'arrow
+        neotree-smart-optn t
+        neo-window-fixed-size nil)
+  ;; Disable linum for neotree
+  (add-hook 'neo-after-create-hook 'disable-neotree-hook))
 
 ;; display ^L as horizontal rule
 (use-package page-break-lines
