@@ -36,6 +36,8 @@
    (lsp-ui-sideline-show-hover t)
    (lsp-ui-doc-enable nil))
 
+
+;; rust lsp code annotations need this, otherwise lines may shift in height
 (custom-set-faces '(markdown-code-face ((t (:inherit default)))))
 
 
