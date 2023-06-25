@@ -1,3 +1,5 @@
+(setq exec-path (append exec-path '("~/.cargo/bin")))
+
 (use-package rustic
   :config
   (setq
