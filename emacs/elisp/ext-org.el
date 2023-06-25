@@ -43,9 +43,10 @@
   :pin melpa  ;`package-archives' should already have ("melpa" . "https://melpa.org/packages/")
   :after ox)
 
+(use-package unfill)
+
 ;; Don't include default CSS
 (setq org-html-head-include-default-style nil)
-;;(setq org-html-head-include-scripts nil)
 
 ;; add last-modified time
 ;;(add-hook 'before-save-hook 'time-stamp)
@@ -189,5 +190,20 @@
   (add-hook 'org-mode-hook
             (lambda ()
               (org-bullets-mode t))))
+
+(use-package org-roam-ui)
+
+(use-package org-bullets
+  :config
+  (setq org-hide-leading-stars t)
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (org-bullets-mode t))))
+
+;(use-package org-projectile
+;  :config
+;  (org-projectile-per-project)
+;  (setq org-projectile-per-project-filepath "todo.org"
+;      org-agenda-files (append org-agenda-files (org-projectile-todo-files))))
 
 (provide 'ext-org)

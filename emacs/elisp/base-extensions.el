@@ -151,7 +151,15 @@
   :ensure t
   :defer 10
   :config
-  (setq magit-completing-read-function 'ivy-completing-read))
+  :bind
+  ("C-x g s" . magit-status)
+  ("C-x g x" . magit-checkout)
+  ("C-x g c" . magit-commit)
+  ("C-x g p" . magit-push)
+  ("C-x g u" . magit-pull)
+  ("C-x g e" . magit-ediff-resolve)
+  ("C-x g r" . magit-rebase-interactive))
+(setq magit-completing-read-function 'ivy-completing-read)
 
 (use-package restclient
   :ensure t
@@ -249,6 +257,7 @@
    undo-tree-history-directory-alist `(("." . ,(concat temp-dir "/undo/"))))
   (global-undo-tree-mode 1))
 
+(add-hook 'java-mode-hook (lambda () (setq c-basic-offset 2)))
 
 (provide 'base-extensions)
 ;;; base-extensions.el ends here
