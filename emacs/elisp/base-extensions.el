@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(use-package yasnippet)
+
 ;; this does not /install/ the fonts.  Run M-x all-the-icons-install-fonts for that.
 (use-package all-the-icons
   :ensure t
