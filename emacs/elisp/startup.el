@@ -27,4 +27,13 @@
 (add-hook 'focus-out-hook 'garbage-collect)
 (run-with-idle-timer 5 t 'garbage-collect)
 
+(define-minor-mode prot/display-line-number-mode
+  "Disable line numbers, except for programming modes"
+  :init-value nil
+  :global nil
+  (if prot/display-line-number-mode
+      (unless (derived-mode-p 'prog-mode)
+	(display-line-numbers-mode -1))
+    (display-line-numbers-mode 1)))
+
 (provide 'startup)
