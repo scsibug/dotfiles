@@ -113,6 +113,7 @@
   ("C-c k" . 'counsel-rg)
   ("C-x l" . 'counsel-locate))
 
+
 ;; ivy / projectile integration
 ;; (use-package counsel-projectile
 ;;   :bind
@@ -143,6 +144,10 @@
   (setq ivy-count-format "(%d/%d) ")
   ;; wrap-around search
   (setq ivy-wrap t))
+
+(define-key ivy-minibuffer-map (kbd "C-j") 'ivy-immediate-done)
+(define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)
+
 
 (add-to-list 'exec-path "/Users/scsibug/.nix-profile/bin")
 
