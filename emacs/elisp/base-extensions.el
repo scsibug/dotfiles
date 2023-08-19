@@ -61,6 +61,18 @@
         "A little knowledge is a dangerous thing. I regret that this isn't fatal."
 	;; @EmacsRocks
 	"If you think paredit is not for you then you need to become the kind of person that paredit is for."
+	;; Systemantics
+	"Systems in general work poorly or not at all."
+	"A simple system may or may not work."
+	"Some complex systems actually work."
+	"If a system is working, leave it alone."
+	"Programs never run the first time.  Complex programs never run."
+	"Generalized Uncertainty Principle: Systems Display Antics."
+	"Systems should not be unnecessarily multiplied."
+	"The Fundamental Theorem: New systems generate new problems."
+	"The Operational Fallacy: The system itself does not do what it says it is doing."
+	"Le Chatelier's Principle: Complex systems tend to oppose their own proper function."
+	"The system always kicks back."
 	))
 
 (setq dashboard-banner-logo-title (nth (random (length my-dashboard-quotes)) my-dashboard-quotes))
