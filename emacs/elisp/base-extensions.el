@@ -73,6 +73,9 @@
 	"The Operational Fallacy: The system itself does not do what it says it is doing."
 	"Le Chatelier's Principle: Complex systems tend to oppose their own proper function."
 	"The system always kicks back."
+	"Fundamental Failure Mode Theorem: Complex systems usually operate in failure mode."
+	"The crucial variables are discovered by accident."
+	"In setting up a new system, tread softly.  You may be disturbing another system that is actually working."
 	))
 
 (setq dashboard-banner-logo-title (nth (random (length my-dashboard-quotes)) my-dashboard-quotes))
