@@ -59,7 +59,7 @@
         "The currency in the developer community is enthusiasm."
         "They don't make poles long enough for me want to touch Microsoft products."
         "A little knowledge is a dangerous thing. I regret that this isn't fatal."
-        ;; @EmacsRocks
+        ;; @EmacsRocks (https://x.com/emacsrocks)
         "If you think paredit is not for you then you need to become the kind of person that paredit is for."
         ;; Systemantics
         "Systems in general work poorly or not at all."
@@ -76,9 +76,12 @@
         "Fundamental Failure Mode Theorem: Complex systems usually operate in failure mode."
         "The crucial variables are discovered by accident."
         "In setting up a new system, tread softly.  You may be disturbing another system that is actually working."
+	;; George Harrison / Beatles
+	"The problems you sow are the troubles you're reaping"
         ))
 
-(setq dashboard-banner-logo-title (nth (random (length my-dashboard-quotes)) my-dashboard-quotes))
+(setq dashboard-banner-logo-title
+      (nth (random (length my-dashboard-quotes)) my-dashboard-quotes))
 (setq dashboard-center-content t)
 (setq dashboard-set-heading-icons t)
 (setq dashboard-set-file-icons t)
