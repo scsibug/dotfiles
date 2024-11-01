@@ -169,6 +169,13 @@
 			    "#+lastmod: Time-stamp: <>\n#+title: ${title}\n#+category: ${title}\n#+date: %u\n#+filetags: :@concept:\n")
          :immediate-finish t
          :unnarrowed t)
+	("A" "area" plain
+         "%?/Area Summary/\n\n* References\n"
+         :if-new (file+head "area/%<%Y%m%d>-${slug}.org"
+			    "#+lastmod: Time-stamp: <>\n#+title: ${title}\n#+category: ${title}\n#+date: %u\n#+filetags: :@area:\n")
+         :immediate-finish t
+         :unnarrowed t)
+
 	("p" "project" plain
          "%?/Project Summary/\n\n* References\n"
          :if-new (file+head "projects/%<%Y%m%d>-${slug}.org"
