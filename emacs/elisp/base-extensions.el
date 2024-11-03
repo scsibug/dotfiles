@@ -78,6 +78,8 @@
         "In setting up a new system, tread softly.  You may be disturbing another system that is actually working."
 	;; George Harrison / Beatles
 	"The problems you sow are the troubles you're reaping"
+	;; Leslie Lamport
+	"If you're thinking without writing, you only think you're thinking."
         ))
 
 (setq dashboard-banner-logo-title
