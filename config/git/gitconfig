@@ -16,5 +16,7 @@
 	template = ~/.gitmessage
 [merge]
 	conflictstyle = diff3
-[credentials]
+[credential]
 	helper = store
+[push]
+        autoSetupRemote = true
