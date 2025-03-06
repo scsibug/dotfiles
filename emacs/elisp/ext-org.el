@@ -119,12 +119,6 @@
                                      (no-delete-other-windows . t)))))
 (setq org-roam-capture-templates
       '(
-	;; Bookmarks
-	("k" "bookmark" entry
-	 "* TODO %(org-cliplink-capture) \n  SCHEDULED: %t\n"
-	 :target (file+olp "bookmarks.org" ())
-	 :empty-lines 1
-	 )
 	;; Fleeting notes
 	("f" "fleeting" entry
          "** TODO ${title}\n%?"
