@@ -28,6 +28,9 @@
   (global-set-key (kbd "<f8>") 'org-tree-slide-mode)
   (global-set-key (kbd "S-<f8>") 'org-tree-slide-skip-done-toggle))
 
+(set-face-attribute 'org-block-begin-line nil :foreground "#2a2a2a")
+(set-face-attribute 'org-block-end-line nil :foreground "#2a2a2a")
+
 ;; org publishing
 (require 'ox-publish)
 
