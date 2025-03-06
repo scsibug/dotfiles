@@ -171,6 +171,12 @@
 			    "#+lastmod: Time-stamp: <>\n#+title: ${title}\n#+category: ${title}\n#+date: %u\n#+filetags: :@project:\n")
          :immediate-finish t
          :unnarrowed t)
+	("m" "meeting" plain
+         "%?\n* Attendees\n\n* Notes\n"
+         :if-new (file+head "meetings/%<%Y%m%d>-${slug}.org"
+			    "#+lastmod: Time-stamp: <>\n#+title: ${title}\n#+category: ${title}\n#+date: %u\n#+filetags: :@meeting:\n")
+         :immediate-finish t
+         :unnarrowed t)
 	("n" "note" plain
 	 "%?"
          :if-new (file+head "notes/%<%Y%m%d>-${slug}.org"
