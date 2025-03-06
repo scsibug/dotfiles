@@ -22,7 +22,6 @@
 
 (use-package org-tree-slide
   :ensure t
-  :defer 15
   :custom
   (org-image-actual-width nil)
   (org-tree-slide-breadcrumbs " > ")
