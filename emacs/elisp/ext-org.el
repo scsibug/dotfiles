@@ -152,13 +152,6 @@
 			    "#+lastmod: Time-stamp: <>\n#+title: ${title}\n#+category: ${title}\n#+date: %u\n#+filetags: :@software:\n")
          :immediate-finish t
          :unnarrowed t)
-	("h" "hardware" plain
-	 "#+title: ${title}\n#+category: ${title}\n#+filetags: :hardware:\n#+date: %u\n\n- Homepage: %?\n- Manufacturer:\n- Model:\n"
-
-         :if-new (file+head "hardware/%<%Y%m%d>-${slug}.org"
-			    "#+lastmod: Time-stamp: <>\n#+title: ${title}\n#+category: ${title}\n#+date: %u\n#+filetags: :@software:\n")
-         :immediate-finish t
-         :unnarrowed t)
 	("c" "concept" plain
          "%?/Concept Summary/\n\n* References\n"
          :if-new (file+head "concepts/%<%Y%m%d>-${slug}.org"
