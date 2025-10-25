@@ -82,6 +82,8 @@
 	"If you're thinking without writing, you only think you're thinking."
 	;; Neil Gaiman, The Sandman, Vol 3
 	"The price of getting what you want, is getting what you once wanted."
+	;; Charles Spurgeon
+	"By perseverance the snail reached the ark"
         ))
 
 (setq dashboard-banner-logo-title
