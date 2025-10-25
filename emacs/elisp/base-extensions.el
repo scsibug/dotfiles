@@ -288,5 +288,14 @@
 
 (add-hook 'java-mode-hook (lambda () (setq c-basic-offset 2)))
 
+;;; Pest mode for developing grammars
+(use-package pest-mode
+  :ensure t)
+(add-to-list #'auto-mode-alist '("\\.pest\\'" . pest-mode))
+(use-package flycheck-pest
+  :ensure t)
+(use-package flymake-pest
+  :ensure t)
+
 (provide 'base-extensions)
 ;;; base-extensions.el ends here
