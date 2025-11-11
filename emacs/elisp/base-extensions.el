@@ -80,6 +80,8 @@
 	"The problems you sow are the troubles you're reaping"
 	;; Leslie Lamport
 	"If you're thinking without writing, you only think you're thinking."
+	;; Neil Gaiman, The Sandman, Vol 3
+	"The price of getting what you want, is getting what you once wanted."
         ))
 
 (setq dashboard-banner-logo-title
