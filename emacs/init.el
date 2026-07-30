@@ -14,6 +14,7 @@
 (require 'base-global-keys)
 (require 'ext-org)
 (require 'lang-rust)
+(require 'lang-scheme)
 
 ;; enable downcase-region command (C-x C-l)
 (put 'downcase-region 'disabled nil)
