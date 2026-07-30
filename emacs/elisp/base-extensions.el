@@ -2,6 +2,17 @@
 ;;; Commentary:
 ;;; Code:
 
+(use-package keyfreq :ensure t)
+
+(keyfreq-mode 1)
+(keyfreq-autosave-mode 1)
+(setq keyfreq-excluded-commands
+      '(self-insert-command
+        forward-char
+        backward-char
+        previous-line
+        next-line))
+
 (use-package yasnippet)
 
 ;; this does not /install/ the fonts.  Run M-x all-the-icons-install-fonts for that.
