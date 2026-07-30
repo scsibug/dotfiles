@@ -10,7 +10,22 @@
  '(indent-tabs-mode nil)
  '(ledger-binary-path "/Users/scsibug/.nix-profile/bin/ledger")
  '(package-selected-packages
-   '(flymake-pest flycheck-pest pest-mode yasnippet projectile rustic restclient yaml-mode ox-reveal unfill org-roam-ui org-tree-slide org-cliplink htmlize simple-httpd toml-mode tomelr ox ox-hugo org-roam toc-org fira-code-mode page-break-lines counsel flycheck parinfer-rust-mode dimmer diminish duplicate-thing all-the-icons-dired all-the-icons doom-themes rainbow-delimiters ledger-mode ledger-cli lsp-treemacs lsp-ivy lsp-ui lsp-mode which-key wgrep use-package undo-tree solarized-theme smex smartparens racer org-projectile org-bullets neotree multiple-cursors magit-popup magit hlinum flycheck-rust expand-region exec-path-from-shell dumb-jump dashboard counsel-projectile company cargo avy)))
+   '(all-the-icons all-the-icons-dired avy cargo command-log-mode company
+                   counsel counsel-projectile dashboard diminish
+                   dimmer doom-themes dumb-jump duplicate-thing
+                   exec-path-from-shell expand-region fira-code-mode
+                   flycheck flycheck-pest flycheck-rust flymake-pest
+                   geiser-guile hlinum htmlize keyfreq ledger-cli
+                   ledger-mode lsp-ivy lsp-mode lsp-treemacs lsp-ui
+                   magit magit-popup multiple-cursors neotree
+                   org-bullets org-cliplink org-projectile org-roam
+                   org-roam-ui org-tree-slide ox ox-hugo ox-reveal
+                   page-break-lines paredit parinfer-rust-mode
+                   pest-mode projectile racer rainbow-delimiters
+                   restclient rustic simple-httpd smartparens smex
+                   solarized-theme toc-org tomelr toml-mode undo-tree
+                   unfill use-package wgrep which-key yaml-mode
+                   yasnippet)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
