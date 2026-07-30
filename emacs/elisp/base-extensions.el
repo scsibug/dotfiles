@@ -308,5 +308,14 @@
 (use-package flymake-pest
   :ensure t)
 
+(use-package markdown-mode
+  :ensure t
+  :mode ("README\\.md\\'" . gfm-mode)
+  :custom
+  (markdown-italic-underscore nil)
+  (markdown-enable-html nil)
+  (markdown-enable-math nil)
+  (markdown-gfm-use-electric-backquote nil))
+
 (provide 'base-extensions)
 ;;; base-extensions.el ends here
