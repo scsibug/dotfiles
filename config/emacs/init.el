@@ -433,6 +433,13 @@
   (add-hook 'org-mode-hook
             (lambda ()
               (org-bullets-mode t))))
+
+(setq org-priority-highest 0
+      org-priority-lowest 5
+      org-priority-start-cycle-with-default t)
+
+(org-babel-do-load-languages 'org-babel-load-languages '((python . t)))
+(setq org-confirm-babel-evaluate nil)
 ;;;;;;;;;;;;;;;;;;;; Rust
 
 (setq exec-path (append exec-path '("~/.cargo/bin")))
