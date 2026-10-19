@@ -5,12 +5,9 @@ GIT_ROOT=$(git rev-parse --show-toplevel)
 
 ### Emacs
 # Ensure emacs config dir exists
-mkdir -p ~/.emacs.d
+mkdir -p ~/.config/emacs/
 # Add symlink (replacing existing links)
-ln -svf "${GIT_ROOT}/emacs/init.el" ~/.emacs.d/init.el
-ln -svf "${GIT_ROOT}/emacs/.custom.el" ~/.emacs.d/.custom.el
-ln -svf "${GIT_ROOT}/emacs/elisp" ~/.emacs.d
-ln -svf "${GIT_ROOT}/emacs/snippets" ~/.emacs.d
+ln -svf "${GIT_ROOT}/config/emacs/init.el" ~/.config/emacs/init.el
 
 ### Git
 ln -svf "${GIT_ROOT}/config/git/gitconfig" ~/.gitconfig
