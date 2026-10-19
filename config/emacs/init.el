@@ -670,3 +670,7 @@
 
 (provide 'init)
 ;;; init.el ends here
+
+;;;;;;;;;;;;;;;;;;;; Python
+
+(add-hook 'python-mode-hook '(lambda () (setq python-indent 2)))
